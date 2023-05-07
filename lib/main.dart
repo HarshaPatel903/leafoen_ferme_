@@ -54,11 +54,11 @@ class MyApp extends StatelessWidget {
               borderSide: BorderSide.none,
             ),
           )),
-      // home: const WelcomeScreen(),
+      home: const WelcomeScreen(),
       // home: HomeApp(),
       // home: EComHomeScreen(),
       // home: WeatherApp(),
-      home: MyHomePage(),
+      // home: MyHomePage(),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:ferme_final/HomeScreen/home.dart';
 import 'package:ferme_final/authentication.dart';
 import 'package:ferme_final/login_screen/components/already_have_an_account_acheck.dart';
 import 'package:ferme_final/login_screen/socal_card.dart';
+import 'package:ferme_final/main.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
@@ -60,7 +61,7 @@ class LoginForm extends StatelessWidget {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
                   fullscreenDialog: true,
-                  builder: (context) => Home(),
+                  builder: (context) => MyHomePage(),
                 ),
               );
             }
