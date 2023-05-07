@@ -57,7 +57,7 @@ class _CartPageState extends State<CartPage> {
               Container(
                 height: 250.0,
                 width: double.infinity,
-                color: Color(0xFFFDD148),
+                color: Color.fromARGB(255, 12, 204, 60),
               ),
               Positioned(
                 bottom: 450.0,
@@ -67,7 +67,7 @@ class _CartPageState extends State<CartPage> {
                   width: 400.0,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(200.0),
-                    color: Color(0xFFFEE16D),
+                color: Color.fromARGB(255, 12, 204, 60),
                   ),
                 ),
               ),
@@ -79,7 +79,7 @@ class _CartPageState extends State<CartPage> {
                     width: 300.0,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(150.0),
-                        color: Color(0xFFFEE16D).withOpacity(0.5))),
+                                        color: Color.fromARGB(255, 12, 204, 60).withOpacity(0.5))),
               ),
               Padding(
                 padding: EdgeInsets.only(top: 15.0),
