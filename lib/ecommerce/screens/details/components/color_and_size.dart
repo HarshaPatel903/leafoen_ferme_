@@ -19,17 +19,54 @@ class ColorAndSize extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text("Color"),
-              Row(
-                children: <Widget>[
-                  ColorDot(
-                    color: Color(0xFF356C95),
-                    isSelected: true,
+                  Container(
+                    padding: EdgeInsets.only(bottom: 6),
+                    child: 
+                  Text((product.type == "Fruits" || product.type == "Vegetables")
+                  ?  "Type" : "Color")
                   ),
-                  ColorDot(color: Color(0xFFF8C078)),
-                  ColorDot(color: Color(0xFFA29B9B)),
-                ],
-              ),
+              (product.type == "Fuits" || product.type == "Vegetables")
+                  ? Row(
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            ColorDot(
+                              color: Color(0xFF356C95),
+                              isSelected: true,
+                            ),
+                            Text("1 KG   "),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            ColorDot(color: Color(0xFFF8C078)),
+                            Text("3 KG   "),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            ColorDot(color: Color(0xFFA29B9B)),
+                            Text("5 KG   "),
+                          ],
+                        ),
+                      ],
+                    )
+                  : Row(
+                      children: <Widget>[
+                        ColorDot(
+                          color: Color(0xFF356C95),
+                          isSelected: true,
+                        ),
+                        ColorDot(color: Color(0xFFF8C078)),
+                        ColorDot(color: Color(0xFFA29B9B)),
+                      ],
+                    ),
             ],
           ),
         ),
@@ -60,7 +97,7 @@ class ColorDot extends StatelessWidget {
   final bool isSelected;
   const ColorDot({
     Key? key,
-   required this.color,
+    required this.color,
     // by default isSelected is false
     this.isSelected = false,
   }) : super(key: key);
@@ -69,8 +106,8 @@ class ColorDot extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-        top: kDefaultPaddin / 4,
-        right: kDefaultPaddin / 2,
+        // top: kDefaultPaddin / 4,
+        left: kDefaultPaddin / 2,
       ),
       padding: EdgeInsets.all(2.5),
       height: 24,

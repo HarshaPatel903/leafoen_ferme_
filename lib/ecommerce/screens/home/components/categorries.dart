@@ -1,4 +1,7 @@
+import 'package:ferme_final/ecommerce/models/Product.dart';
+import 'package:ferme_final/ecommerce/screens/home/components/cartController.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../constants.dart';
 
@@ -10,6 +13,7 @@ class Categories extends StatefulWidget {
 }
 
 class _CategoriesState extends State<Categories> {
+      final CartController controller = Get.put(CartController());
   List<String> categories = ["Vegitables", "Fruits", "Farm Products", "Daily Products"];
   // By default our first item will be selected
   int selectedIndex = 0;
@@ -31,7 +35,23 @@ class _CategoriesState extends State<Categories> {
   Widget buildCategory(int index) {
     return GestureDetector(
       onTap: () {
-        print(categories[index]);
+        controller.selectedCategory.value = categories[index];
+        if(categories[index] == "Vegitables")
+        {
+        controller.filterProducts.clear();
+        controller.filterProducts.value =[...products];
+        }
+        else if(categories[index] == "Fruits")
+        {
+        controller.filterProducts.clear();
+        controller.filterProducts.value =[...fruitProduct];
+        }
+        else{
+          
+        controller.filterProducts.clear();
+        controller.filterProducts.value =[...products];
+        
+        }
         setState(() {
           selectedIndex = index;
         });

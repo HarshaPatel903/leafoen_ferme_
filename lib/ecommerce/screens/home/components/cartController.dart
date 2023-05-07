@@ -35,5 +35,10 @@ Product(
       type:'Vegetables')
 ]);
 
-RxList<Product> filterProducts = RxList<Product>([]);
+
+
+RxList<Product> filterProducts = RxList<Product>([...products]);
+
+
+RxString selectedCategory = "Vegetables".obs;
 }
