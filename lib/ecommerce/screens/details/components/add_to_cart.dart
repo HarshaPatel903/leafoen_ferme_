@@ -1,5 +1,7 @@
+import 'package:ferme_final/ecommerce/screens/home/components/cartController.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import '../../../../ecommerce/models/Product.dart';
 
 import '../../../constants.dart';
@@ -45,7 +47,9 @@ class AddToCart extends StatelessWidget {
                 //     borderRadius: BorderRadius.circular(18)),
                 // color: product.color,
                 onPressed: () {
-                                  print(product.title);
+                                      final CartController controller = Get.put(CartController());
+                                      print(product.id);
+controller.cartProducts.add(Product(id: product.id, image: product.image, title: product.title, price: product.price, description: product.description, size: product.size, color: product.color, type: product.type));
 
                 },
                 child: Text(

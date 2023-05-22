@@ -3,7 +3,10 @@ import 'package:ferme_final/ecommerce/screens/home/components/cartController.dar
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:toast/toast.dart';
 import 'package:upi_payment_flutter/upi_payment_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:razorpay_web/razorpay_web.dart';
 
 
 class CartPage extends StatefulWidget {
@@ -20,7 +23,57 @@ class _CartPageState extends State<CartPage> {
 
     final CartController controller = Get.put(CartController());
 
-  List picked = [true, true];
+  List picked = [false, false,false,false,false,false,false,true,true];
+final _razorpay = Razorpay();
+
+ @override
+  void initState() {
+    super.initState();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+  }
+
+ void openCheckout() async {
+    var options = {
+      'key': 'rzp_test_IliU4f55MXoKXL',
+      'amount': totalAmount*100,
+      'name': 'Ferme.',
+      'description': 'Ferme Products',
+      'send_sms_hash': true,
+      'prefill': {'contact': '9481089140', 'email': 'test@razorpay.com'},
+      'external': {
+        'wallets': ['paytm']
+      }
+    };
+
+    try {
+      _razorpay.open(options);
+    } catch (e) {
+      debugPrint('Error: e');
+    }
+  }
+
+  void _handlePaymentSuccess(PaymentSuccessResponse response) {
+    print('Success Response: $response');
+    // Fluttertoast.showToast(msg: "SUCCESS: ${response.paymentId!}", toastLength: Toast.LENGTH_SHORT);
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    print('Error Response: $response');
+    // Fluttertoast.showToast(msg: "ERROR: ${response.code} - ${response.message!}", toastLength: Toast.LENGTH_SHORT);
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    print('External SDK Response: $response');
+    // Fluttertoast.showToast(msg: "EXTERNAL_WALLET: ${response.walletName!}", toastLength: Toast.LENGTH_SHORT);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _razorpay.clear();
+  }
 
   int totalAmount = 0;
 
@@ -39,7 +92,7 @@ class _CartPageState extends State<CartPage> {
       }
       if (i == picked.length - 1) {
         setState(() {
-          totalAmount = 248 * count;
+          totalAmount = 56 * count;
         });
       }
     }
@@ -73,11 +126,37 @@ class _CartPageState extends State<CartPage> {
     }
   }
 
+void launchUPI() async {
+  // Replace the placeholder values with the receiver's UPI ID and other information
+  final String receiverUpiId = '9481089140@paytm'; // Receiver's UPI ID
+  final String receiverName = "Ferme Owner";
+  final String transactionId = "121212";
+  final String yourRefId = "yourRefId";
+  final String paymentDescription = "Ferme Products";
+  final double amount = 100.00;
+  final String currency = "INR";
+
+  // Construct the UPI URL with the parameters
+  final String upiUrl = "upi://pay?pa=$receiverUpiId&pn=$receiverName&mc=1234&tid=$transactionId&tr=$yourRefId&tn=$paymentDescription&am=$amount&cu=$currency";
+
+  // Check if the URL can be launched
+  if (await canLaunch(upiUrl)) {
+    // Launch the UPI URL
+    await launch(upiUrl);
+  } else {
+    // Handle error if the URL cannot be launched
+    throw 'Could not launch UPI';
+  }
+}
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(shrinkWrap: true, children: <Widget>[
+      body: ListView(
+      scrollDirection: Axis.vertical,
+      children: <Widget>[
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
           Stack(children: [
             Stack(children: <Widget>[
@@ -141,16 +220,30 @@ class _CartPageState extends State<CartPage> {
         // ),
                 child: Column(
                   children: <Widget>[
-                    itemCard(controller.cartProducts[0].title, controller.cartProducts[0].size, controller.cartProducts[0].price,
-                        controller.cartProducts[0].image, true, 0),
-                      itemCard(controller.cartProducts[1].title, controller.cartProducts[1].size, controller.cartProducts[1].price,
-                        controller.cartProducts[1].image, true, 1),
+
+                    Container(
+                      height: MediaQuery.of(context).size.height*.6,
+                      child: SingleChildScrollView(
+                        child: Column(
+                                      children: List.generate(controller.cartProducts.length, (index) {
+                                        var product = controller.cartProducts[index];
+                                        
+                                        return itemCard(
+                        product.title,
+                        product.size,
+                        product.price,
+                        product.image,
+                        true,
+                        index,
+                                        );
+                                      }),
+                                      ),
+                      ),
+                    ),
                       // itemCard(controller.cartProducts[2].title, controller.cartProducts[2].size, controller.cartProducts[2].price,
                       //   controller.cartProducts[2].image, true, 2),
                         InkWell(
-                          onTap: () {
-                            initiateTransaction(totalAmount.toDouble());
-                          },
+                          onTap: openCheckout,
                           child: Container(
                             color: Colors.green,
                             height: 40,
@@ -158,7 +251,7 @@ class _CartPageState extends State<CartPage> {
                              child: Center(child: Text("Pay Now"))),
                         )
                   ],
-
+                
                 ),
               ),
               Padding(
