@@ -1,7 +1,9 @@
 import 'package:ferme_final/ecommerce/models/Product.dart';
 import 'package:ferme_final/ecommerce/screens/home/components/cartController.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:upi_payment_flutter/upi_payment_flutter.dart';
 
 
 class CartPage extends StatefulWidget {
@@ -42,6 +44,35 @@ class _CartPageState extends State<CartPage> {
       }
     }
   }
+    final upiPaymentHandler = UpiPaymentHandler();
+
+
+   Future<void> initiateTransaction(double amount) async {
+    try {
+      bool success = await upiPaymentHandler.initiateTransaction(
+        payeeVpa: '9481089140@paytm',
+        payeeName: 'Ferme Merchant',
+        transactionRefId: 'TXN123456',
+        transactionNote: 'Test transaction',
+        amount: amount,
+      );
+
+      if (success) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Transaction initiated successfully!')),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Transaction initiation failed.')),
+        );
+      }
+    } on PlatformException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: ${e.message}')),
+      );
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -116,24 +147,16 @@ class _CartPageState extends State<CartPage> {
                         controller.cartProducts[1].image, true, 1),
                       // itemCard(controller.cartProducts[2].title, controller.cartProducts[2].size, controller.cartProducts[2].price,
                       //   controller.cartProducts[2].image, true, 2),
-                        Container(
-                          color: Colors.green,
-                          height: 40,
-                          width: 120,
-                           child: Center(child: Text("Pay Now")))
-                        //  Padding(
-                        //     padding: const EdgeInsets.all(8.0),
-                        //     child: ElevatedButton(
-                        //       onPressed: () {},
-                        //       child: Center(
-                        //         child: Text(
-                        //           'Pay Now',
-                        //         ),
-                        //       ),
-                        //       // textColor: Colors.white,
-                        //     ),
-                        //   )
-
+                        InkWell(
+                          onTap: () {
+                            initiateTransaction(totalAmount.toDouble());
+                          },
+                          child: Container(
+                            color: Colors.green,
+                            height: 40,
+                            width: 120,
+                             child: Center(child: Text("Pay Now"))),
+                        )
                   ],
 
                 ),
@@ -147,7 +170,7 @@ class _CartPageState extends State<CartPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
-                          Text('Total: \$' + totalAmount.toString()),
+                          Text('Total:' + totalAmount.toString()),
                           SizedBox(width: 10.0),
                          
                         ],
@@ -274,7 +297,7 @@ class _CartPageState extends State<CartPage> {
                           SizedBox(height: 7.0),
                           available
                               ? Text(
-                                  '\$' + price,
+                                  '' + price,
                                   style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.bold,

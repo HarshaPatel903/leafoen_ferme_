@@ -1,5 +1,6 @@
 import 'package:ferme_final/HomeScreen/Newz.dart';
 import 'package:ferme_final/HomeScreen/home.dart';
+import 'package:ferme_final/ecommerce/payment.dart';
 import 'package:ferme_final/ecommerce/screens/home/components/cart.dart';
 import 'package:ferme_final/ecommerce/screens/home/home_screen.dart';
 import 'package:ferme_final/login_screen/Screens/Welcome/welcome_screen.dart';
@@ -55,6 +56,9 @@ class MyApp extends StatelessWidget {
             ),
           )),
       home: const WelcomeScreen(),
+
+
+
       // home: HomeApp(),
       // home: EComHomeScreen(),
       // home: WeatherApp(),
