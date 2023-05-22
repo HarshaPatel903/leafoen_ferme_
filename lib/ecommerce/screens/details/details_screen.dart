@@ -1,5 +1,7 @@
+import 'package:ferme_final/ecommerce/screens/home/components/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import '../../../ecommerce/constants.dart';
 import '../../../ecommerce/models/Product.dart';
 import '../../../ecommerce/screens/details/components/body.dart';
@@ -36,7 +38,10 @@ class DetailsScreen extends StatelessWidget {
         ),
         IconButton(
           icon: SvgPicture.asset("assets/icons/cart.svg"),
-          onPressed: () {},
+          onPressed: () {
+                        Get.to(CartPage());
+
+          },
         ),
         SizedBox(width: kDefaultPaddin / 2)
       ],

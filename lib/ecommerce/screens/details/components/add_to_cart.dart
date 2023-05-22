@@ -43,14 +43,16 @@ class AddToCart extends StatelessWidget {
             child: SizedBox(
               height: 50,
               child: ElevatedButton(
-                // shape: RoundedRectangleBorder(
-                //     borderRadius: BorderRadius.circular(18)),
-                // color: product.color,
                 onPressed: () {
                                       final CartController controller = Get.put(CartController());
-                                      print(product.id);
-controller.cartProducts.add(Product(id: product.id, image: product.image, title: product.title, price: product.price, description: product.description, size: product.size, color: product.color, type: product.type));
-
+                         Get.snackbar(
+              "Added To Cart",
+               product.title,
+               icon: Icon(Icons.shopping_bag_rounded, color: Colors.white),
+               snackPosition: SnackPosition.BOTTOM,
+                 
+               );
+                          controller.cartProducts.add(Product(id: product.id, image: product.image, title: product.title, price: product.price, description: product.description, size: product.size, color: product.color, type: product.type));
                 },
                 child: Text(
                   "ADD TO CART".toUpperCase(),

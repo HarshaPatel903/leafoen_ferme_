@@ -55,12 +55,12 @@ class MyApp extends StatelessWidget {
               borderSide: BorderSide.none,
             ),
           )),
-      // home: const WelcomeScreen(),
+      home: const WelcomeScreen(),
 
 
 
       // home: HomeApp(),
-      home: CartPage(),
+      // home: EComHomeScreen(),
       // home: WeatherApp(),
       // home: MyHomePage(),
     );
