@@ -16,6 +16,120 @@ class Product {
   });
 }
 
+List<Product> farmProducts = [
+Product(
+      id: 19,
+      title: "Sunflower seeds",
+      price: '₹150',
+      size: '1 KG',
+      description: 'Sunflower seeds are the edible fruits of the sunflower plant. They are small, oval-shaped seeds with a hard, black-and-white striped outer shell & a  tender kernel inside. These seeds are rich in healthy fats, protein, fiber, vitamins, and minerals, and can be eaten raw or roasted for a crunchy & nutritious snack.',
+      image: "assets/images/sunflower_seeeds.png",
+      color: Color(0xFFB3AC9C),
+      type: 'Seeds'),
+Product(
+      id: 20,
+      title: "Pumpkin seeds",
+      price: '₹354',
+      size: '1 KG',
+      description: 'Pumpkin seeds are edible, flat, oval-shaped seeds that are found inside a pumpkin. They are a good source of protein, healthy fats, and fiber, as well as micronutrients like magnesium, zinc, and potassium. Pumpkin seeds can be roasted and salted for a tasty snack, or used as an ingredient in baking and cooking.',
+      image: "assets/images/pumkinSeeds.png",
+      color: Color(0xFF7D783F),
+      type: 'Seeds'),
+Product(
+      id: 21,
+      title: "Garden Hoe",
+      price: '₹299',
+      size:'1 pc',
+      description: 'A garden hoe is a hand-held gardening tool used for weeding, cultivating, and shaping soil. It consists of a long handle with a flat blade at the end that is used to chop, scrape, or pull weeds from the soil. Garden hoes come in different shapes and sizes and can be made of various materials like   wood, metal or plastic.',
+      color: Color(0xFFEFDCC8),
+      image: "assets/images/gardenHoe.png",
+      type: 'Garden Tools'),
+Product(
+      id: 22,
+      title: "Pruning Shears",
+      price: '₹599',
+      size: '1 pc',
+      description: 'Pruning shears are a type of gardening tool used to trim and shape plants, shrubs, and small trees. They consist of two sharp blades that are hinged  together, with one blade having a curved or straight cutting edge. Pruning shears are designed to make clean and precise cuts on plants, helping to   promote healthy growth and prevent the spread of diseases.',
+      color: Color(0xFF8A7677),
+      image: "assets/images/pruning.png",
+      type: 'Garden Tools'),
+Product(
+      id: 23,
+      title: "Chlorpyrifos",
+      price: '₹380',
+      size: '1 LTR',
+      description: 'Chlorpyrifos is a broad-spectrum insecticide that belongs to the organophosphate group of chemicals. It is used to control a wide range of pests, including termites, mosquitoes, and flies. However, it is also a controversial chemical due to its potential harmful effects on human health and the  environment.',
+      color: Color(0xFFD0CDD1),
+      image: "assets/images/Chlorpyrifos.png",
+      type: 'Insecticides'),
+Product(
+      id: 24,
+      title: "Malathion",
+      price: '₹670',
+      size: '1 LTR',
+      description: 'Malathion is a broad-spectrum organophosphate insecticide that is commonly used in agriculture to control pests like mosquitoes, flies, and aphids. It   works by inhibiting the activity of an enzyme in the nervous system of insects, leading to paralysis and death. Malathion is also used to control pests   in urban areas and to treat head lice and scabies in humans.',
+      color: Color(0xFF307C5C),
+      image: "assets/images/Malathion.png",
+      type: 'Insecticides'),
+];
+
+
+List<Product> dairyProduct  = [
+Product(
+      id: 13,
+      title: "Milk",
+      price: '₹50',
+      size: '1 LTR',
+      description: 'Milk is a nutrient-rich liquid that is produced by female mammals to feed their young. It is a white or cream-colored liquid that is consumed by humans 	and used in a variety of culinary applications, such as making cheese, butter, and yogurt. Milk is a good source of calcium, protein, and other  essential nutrients.',
+      image: "assets/images/Milk-bottle.png",
+      color: Color(0xFFEAEAE9),
+      type:'Dairy Products'),
+Product(
+      id: 14,
+      title: "Cheese",
+      price: '₹440',
+      size: '1 KG',
+      description: 'Cheese is a dairy product made from milk that has been coagulated and separated into solids and liquids. It comes in many different varieties, from soft     and creamy to hard and crumbly, and can be made from the milk of cows, goats, or sheep. Cheese is used in a variety of dishes, from sandwiches and pizzas to salads and casseroles.',
+      image: "assets/images/cheeseeeses.png",
+      color: Color(0xFFFCCE57),
+      type: 'Dairy Products'),
+Product(
+      id: 15,
+      title: "Butter",
+      price: '₹56',
+      size: "100g",
+      description: "Butter is a dairy product made from churning cream until it separates into solid butterfat and liquid buttermilk. It has a rich, creamy flavor and is commonly used in cooking, baking, and as a spread for bread and toast. Butter is a good source of fat-soluble vitamins such as vitamin A, D, E, and K.",
+      image: "assets/images/butter.png",
+      color: Color(0xFF7C552A),
+      type :'Dairy Products'),
+Product(
+      id: 16,
+      title: "Buttermilk",
+      price: '₹70',
+      size: '1 LTR',
+      description: "Buttermilk is a fermented dairy drink made from cow's milk that has a tangy, sour taste. It is often used in baking to help tenderize dough and provide a slight tang, and is also used in marinades and dressings. Buttermilk is a good source of calcium, potassium, and probiotics.",
+      image: "assets/images/butterrrr.png",
+      color: Color(0xFFD9C7BD),
+      type: 'Dairy Products'),
+Product(
+      id: 17,
+      title: "Yogurt",
+      price: '₹72',
+      size:' 1 LTR',
+      description: 'Yogurt is a creamy dairy product made by fermenting milk with live bacteria cultures. It has a tangy, slightly sour taste and a thick, smooth texture. Yogurt is often eaten as a snack or used in recipes as a healthy alternative to sour cream or mayonnaise. It is also a good source of protein, calcium,    and probiotics.',
+      image: "assets/images/yogurt.png",
+      color: Color(0xFFD8D4D5),
+      type: 'Dairy Products'),
+Product(
+      id: 18,
+      title: "Fresh Cream",
+      price: '₹215',
+      size: '1 LTR',
+      description: "Cream is a dairy product that is made by separating milk into its high-fat content. It is typically used as a topping or ingredient in desserts, soups, and sauces, and can come in various forms such as heavy cream, light cream, and whipping cream. Cream is a rich source of fat and calories, as well as     vitamins A and D.",
+      image: "assets/images/creamsss.png",
+      color: Color(0xFFCAC7C6),
+      type: 'Dairy Products'),
+];
 List<Product> fruitProduct = [
  Product(
       id: 7,

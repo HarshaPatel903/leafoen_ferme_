@@ -46,8 +46,16 @@ class _CategoriesState extends State<Categories> {
         controller.filterProducts.clear();
         controller.filterProducts.value =[...fruitProduct];
         }
+        else if(categories[index] == "Daily Products")
+        {
+        controller.filterProducts.clear();
+        controller.filterProducts.value =[...dairyProduct];
+        }else if(categories[index] == "Farm Products")
+        {
+        controller.filterProducts.clear();
+        controller.filterProducts.value =[...farmProducts];
+        }
         else{
-          
         controller.filterProducts.clear();
         controller.filterProducts.value =[...products];
         

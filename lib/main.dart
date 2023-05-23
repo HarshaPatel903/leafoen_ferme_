@@ -56,13 +56,6 @@ class MyApp extends StatelessWidget {
             ),
           )),
       home: const WelcomeScreen(),
-
-
-
-      // home: HomeApp(),
-      // home: EComHomeScreen(),
-      // home: WeatherApp(),
-      // home: MyHomePage(),
     );
   }
 }
